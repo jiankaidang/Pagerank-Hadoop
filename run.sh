@@ -31,7 +31,7 @@ hadoop jar hadoop-pagerank.jar Job3 $output_directory
 #Remove the output of previous iterations here. we only need output of the most recent iteration.
 rm -rf Job2
 
-cat $output_directory/top100/part-r-00000 > top100.txt
+cat $output_directory/top100/part-r-00000 > $output_directory/top100.txt
 
 #Remove the output of previous iterations here. we only need output of the most recent iteration.
 rm -rf $output_directory/top100
