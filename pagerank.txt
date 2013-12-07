@@ -1,0 +1,61 @@
+- the input/output format in each Hadoop task, i.e., the keys for the mappers and reducers
+
+    Job1:
+        Mapper<Text, Text, Text, Text>
+            input:
+                key: page1
+                value: page2
+            output:
+                key: page1
+                value: page2
+        Reducer<Text, Text, Text, Text>
+            input:
+                key: page1
+                values: page2\tpage3\tpage4
+            output:
+                key: page1
+                values: 1\tpage2\tpage3\tpage4
+
+    Job2:
+        Mapper<Text, Text, Text, Text>
+            input:
+                key: page1
+                value: score\tpage2\tpage3\tpage4
+            output:
+                key: page1
+                value: score\tpage2\tpage3\tpage4
+
+                key: pageN
+                value: scoreN
+
+        Reducer<Text, Text, Text, Text>
+            input:
+                key: page1
+                value: score\tpage2\tpage3\tpage4
+
+                key: pageN
+                value: scoreN
+            output:
+                key: page1
+                values: score\tpage2\tpage3\tpage4
+
+    Job3:
+        Mapper<Text, Text, Text, Text>
+            input:
+                key: page1
+                value: score\tpage2\tpage3\tpage4
+            output:
+                key: page1
+                value: score
+
+        Reducer<Text, Text, Text, Text>
+            input:
+                key: page1
+                value: score
+
+            output:
+                key: page1
+                values: score
+
+- the Hadoop cluster setting you used, i.e., number of mappers and reducers
+- the running time for run.sh
