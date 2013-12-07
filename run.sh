@@ -5,4 +5,4 @@ input_directory=$1
 input_filename=$2
 output_directory=$3
 #RUN THE FIRST JOB
-hadoop jar hadoop-streaming.jar $input_directory/$input_filename
+hadoop jar hadoop-streaming.jar Job1 $input_directory/$input_filename

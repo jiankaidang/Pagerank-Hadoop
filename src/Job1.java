@@ -21,7 +21,7 @@ public class Job1 {
         Job job = new Job(new Configuration());
         job.setJarByClass(Job1.class);
 
-        job.setNumReduceTasks(10);
+        job.setNumReduceTasks(1);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
