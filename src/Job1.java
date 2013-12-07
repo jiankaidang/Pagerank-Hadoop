@@ -15,6 +15,7 @@ import java.io.IOException;
  * Author: Jiankai Dang
  * Date: 12/6/13
  */
+
 public class Job1 {
     public static void main(String[] args) throws Exception {
         Job job = new Job(new Configuration());
