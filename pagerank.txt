@@ -33,8 +33,8 @@
                 key: page1
                 value: score\tpage2\tpage3\tpage4
 
-                key: pageN
-                value: scoreN
+                key: page1
+                value: score
             output:
                 key: page1
                 values: score\tpage2\tpage3\tpage4
