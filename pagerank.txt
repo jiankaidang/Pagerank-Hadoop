@@ -58,4 +58,46 @@
                 values: score
 
 - the Hadoop cluster setting you used, i.e., number of mappers and reducers
+
+    Job1:
+        number of mappers: 298
+        number of reducers: 1
+
+    Job2:
+        loop1:
+            number of mappers: 81
+            number of reducers: 1
+        loop2:
+            number of mappers: 89
+            number of reducers: 1
+        loop3:
+            number of mappers: 88
+            number of reducers: 1
+        loop4:
+            number of mappers: 87
+            number of reducers: 1
+        loop5:
+            number of mappers: 87
+            number of reducers: 1
+        loop6:
+            number of mappers: 88
+            number of reducers: 1
+        loop7:
+            number of mappers: 87
+            number of reducers: 1
+        loop8:
+            number of mappers: 88
+            number of reducers: 1
+        loop9:
+            number of mappers: 88
+            number of reducers: 1
+        loop10:
+            number of mappers: 87
+            number of reducers: 1
+
+    Job3:
+        number of mappers: 88
+        number of reducers: 1
+
 - the running time for run.sh
+    9 hours, 44 minutes
