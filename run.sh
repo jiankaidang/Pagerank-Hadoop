@@ -4,34 +4,28 @@
 
 N=10 #termination condition
 
-input_directory=$1
-input_filename=$2
+myflow_id=$1
+input_s3=$2
 output_directory=$3
 
+#Use AWS CLI to copy jar files to input_s3 (S3)
+aws s3 cp hadoop-pagerank.jar $input_s3/
+
 #RUN THE FIRST JOB
-hadoop jar hadoop-pagerank.jar Job1 $input_directory/$input_filename
+elastic-mapreduce -j $myflow_id --jar $input_s3/hadoop-pagerank.jar --arg Job1 --arg s3://cs9223/pagelinks-en-all.csv
+elastic-mapreduce -j $myflow_id --wait-for-steps
 
 #RUN THE SECOND JOB
 for ((i=1; i<=$N; i++))
 do
         #Make sure that the output of ith iteration is the input of (i+1)th iteration
-        hadoop jar hadoop-pagerank.jar Job2 $i
-
-        #Remove the output of previous iterations here. we only need output of the most recent iteration.
-        rm -rf Job2/loop$(($i - 1))
-
-        echo DONE ITERATION $i
+        elastic-mapreduce -j $myflow_id --jar $input_s3/hadoop-pagerank.jar --arg Job2 --arg $i
+        elastic-mapreduce -j $myflow_id --wait-for-steps
 done
 
 #RUN THE THIRD JOB
 #Output of the last iteration of job2 will be the input of job3
-hadoop jar hadoop-pagerank.jar Job3 $output_directory
-#SORT AND OUTPUT THE TOP 100
+elastic-mapreduce -j $myflow_id --jar $input_s3/hadoop-pagerank.jar --arg Job3 --arg $output_directory
+elastic-mapreduce -j $myflow_id --wait-for-steps
 
-#Remove the output of previous iterations here. we only need output of the most recent iteration.
-rm -rf Job2
-
-cat $output_directory/top100/part-r-00000 > $output_directory/top100.txt
-
-#Remove the output of previous iterations here. we only need output of the most recent iteration.
-rm -rf $output_directory/top100
+aws s3 cp $output_directory/top100/part-r-00000 $output_directory/top100.txt
